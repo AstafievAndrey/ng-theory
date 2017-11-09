@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row" style="margin: 50px -15px;">
+        <app-add-car (onAddCar)="updateCarList($event)"></app-add-car>
+    </div>
+    <div class="row" style="margin: 50px -15px;">
+        <div class="col-sm-4">
+            <input [(ngModel)]="carName" type="text" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <input [(ngModel)]="carYear"type="text" class="form-control">
+        </div>
+        <div class="col-sm-2">
+            <button (click)="addCarArr()"  class="btn btn-primary">Добавить</button>
+        </div>
+        <div class="col-sm-12">
+            <app-car *ngFor="let item of carsArray" [carItem]="item"></app-car>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" [disabled]="!canAddCar" (click)="carStatusText = 'Машина добавлена'">Добавить машину</button>
+            <button class="btn btn-primary" disabled="{{ !canAddCar }}">Добавить машину</button>
+        </div>
+        <div class="col-sm-12">
+            <p>{{ carStatusText }}</p>
+        </div>
+        <div class="col-sm-12">
+            <app-car *ngFor="let car of cars"></app-car>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" (keyup)="onKeyUp($event)" placeholder="keyup">
+            <input type="text" class="form-control" (input)="onKeyUp($event)" placeholder="input">
+            <input type="text" class="form-control" #myInp (input)="onKeyUpOne(myInp.value)" placeholder="input #">
+            <input type="text" class="form-control" (keyup)="onKeyUpEnter($event)"  placeholder="keyup enter">
+            <input type="text" class="form-control" (keyup.enter)="onKeyUpEnterOne($event)"  placeholder="keyup enter">
+            <p>{{ inputText }}</p>
+            <hr>
+            <input type="text" class="form-control" [(ngModel)]="inputText">
+        </div>
+         <div class="col-sm-12">
+             <ul>
+                 <li *ngFor="let car of cars; let idx = index">
+                     <div   [ngStyle]="{'background-color': (idx+1)%2 === 0 ? 'red' : 'green', 'color':'white' }"
+                            [ngClass]="{'big-text': (car.length>4) ? true:false, 'big-text-function': setBigCarText(car)}">
+                         <b>{{idx+1}}</b> - <i>{{car}}</i>
+                     </div>
+                 </li>
+             </ul>
+         </div>
+
+        <div class="col-sm-12">
+            Рассмотрим pipe
+            <ul>
+                <li *ngFor="let date of dates;">
+                    <div>
+                        <b>{{date | date:'medium'}}</b>
+                    </div>
+                </li>
+                <li *ngFor="let date of dates;">
+                    <div>
+                        <i>{{date.toDateString() | uppercase}}</i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
