@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarsComponent implements OnInit {
 
-  constructor() { }
+    cars:[{name:string, year:number}] = [
+        {name:'Lada',year:2017},
+        {name:'Audi',year:2013},
+        {name:'Mercedez',year:2017},
+    ];
 
-  ngOnInit() {
-  }
+    constructor() { }
+
+    ngOnInit() {
+    }
 
 }
