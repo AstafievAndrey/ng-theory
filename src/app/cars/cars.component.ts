@@ -13,6 +13,10 @@ export class CarsComponent implements OnInit {
         {name:'Mercedez',year:2017},
     ];
 
+    addCar(car:{name:string, year:number}){
+        this.cars.push(car);
+    }
+
     constructor() { }
 
     ngOnInit() {

@@ -1,5 +1,8 @@
-<div>
-    <app-car *ngFor="let item of cars" [car]="item">
-
-    </app-car>
+<div class="container-fluid">
+    <div class="container">
+        <app-add-car (car)="addCar($event)"></app-add-car>
+    </div>
+    <div class="container">
+        <app-car *ngFor="let item of cars" [car]="item"></app-car>
+    </div>
 </div>
