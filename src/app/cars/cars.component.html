@@ -3,6 +3,19 @@
         <app-add-car (car)="addCar($event)"></app-add-car>
     </div>
     <div class="container">
-        <app-car *ngFor="let item of cars" [car]="item"></app-car>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="list-group">
+                    <app-car class="list-group-item" *ngFor="let item of cars" [car]="item">
+                        <p>
+                            <span #carName>{{item.name}}</span>, <span>{{item.year}} год</span>
+                        </p>
+                        <div class="alert alert-info">
+                            Эта машина продана.
+                        </div>
+                    </app-car>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

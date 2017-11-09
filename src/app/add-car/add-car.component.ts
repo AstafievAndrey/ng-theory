@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, ContentChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-add-car',
@@ -16,6 +16,8 @@ export class AddCarComponent implements OnInit {
             name: name.value,
             year: year.valueAsNumber
         });
+        name.value = null;
+        year.valueAsNumber = 2017;
     }
 
   constructor() { }
