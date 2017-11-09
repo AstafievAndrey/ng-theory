@@ -5,8 +5,23 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
+                <button class="btn btn-success" (click)="changeCarName()">
+                    Изменить
+                </button>
+                Изменим имя машины для простмотра ngOnChanges
+                <br>
+                <button class="btn btn-danger" (click)="deleteCar">
+                    Удалить
+                </button>
+                Удалим машину для просмотра ngOnDestroy
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
                 <div class="list-group">
-                    <app-car class="list-group-item" *ngFor="let item of cars" [car]="item">
+                    <app-car class="list-group-item" *ngFor="let item of cars" [car]="item" [name]="item.name">
                         <p>
                             <span #carName>{{item.name}}</span>, <span>{{item.year}} год</span>
                         </p>

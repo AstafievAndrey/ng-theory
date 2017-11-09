@@ -9,9 +9,13 @@ export class CarsComponent implements OnInit {
 
     cars:[{name:string, year:number}] = [
         {name:'Lada',year:2017},
-        {name:'Audi',year:2013},
-        {name:'Mercedez',year:2017},
+        // {name:'Audi',year:2013},
+        // {name:'Mercedez',year:2017},
     ];
+
+    changeCarName(){
+        this.cars[0].name = "Change name";
+    }
 
     addCar(car:{name:string, year:number}){
         this.cars.push(car);
