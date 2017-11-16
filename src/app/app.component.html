@@ -1,11 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1  [appBackground]="'red'" [defaultColor]="'transparent'">
-    Welcome to {{title}}!!
-  </h1>
-
-    <h1 appBackground="green" [defaultColor]="'blue'">
+<div class="container">
+    <h1  [appBackground]="'red'" [defaultColor]="'transparent'">
         Welcome to {{title}}!!
     </h1>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of items" (click)="onClick(item)">
+            {{item}}
+        </li>
+    </ul>
+    <div [ngSwitch]="current">
+        <p *ngSwitchCase="1">1</p>
+        <p *ngSwitchCase="2">2</p>
+        <p *ngSwitchCase="3">3</p>
+        <p *ngSwitchDefault>default</p>
+    </div>
 </div>
 

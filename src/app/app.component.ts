@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+    title = 'app';
+    items:number[] = [1,2,3,4,5];
+    current:number = 1;
+    onClick(number:number){
+        this.current = number;
+    }
 }
