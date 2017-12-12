@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <h3>{{asyncTitle | async}}</h3>
+            <input type="text" class="form-control" [(ngModel)]="searchStr">
+            <hr>
+            <ul class="list-group">
+                <li *ngFor="let item of cars; let i = index" class="list-group-item">
+                    <b>{{i+1}}.</b> {{item.name}}  <i>{{item.descr}}</i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
