@@ -1,0 +1,4 @@
+Название: {{car.name}}, <i>{{car.desc}}</i>. Год: <b>{{car.year}} г.</b>
+<hr>
+<button class="btn btn-primary" [disabled]="car.isSold" (click)="car.isSold=true">продать</button>
+<button class="btn btn-primary" [disabled]="!car.isSold" (click)="car.isSold=false">вернуть</button>
