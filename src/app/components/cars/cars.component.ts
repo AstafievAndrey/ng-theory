@@ -1,22 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {Car} from "../objects/car";
+import {CarService} from "../../services/car.service";
 
 @Component({
   selector: 'app-cars',
   templateUrl: 'cars.component.html',
-  styleUrls: ['cars.component.css']
+  styleUrls: ['cars.component.css'],
 })
 export class CarsComponent implements OnInit {
 
-    cars:Car[]= [
-        {name:'Toyota',desc:'description Toyota',year:2015,isSold:true},
-        {name:'Nissan',desc:'description Nissan',year:2005,isSold:false},
-        {name:'KIA',desc:'description KIA',year:2018,isSold:true}
-    ];
-
-    addCar(car:Car){
-        this.cars.push(car);
-    }
+    cars: Car[];
 
     public getClass(isSolid:boolean){
         return {
@@ -26,9 +19,10 @@ export class CarsComponent implements OnInit {
         }
     }
 
-    constructor() { }
+    constructor(private carService:CarService) { }
 
     ngOnInit() {
+        this.cars = this.carService.cars;
     }
 
 }
