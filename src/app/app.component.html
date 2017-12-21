@@ -1,1 +1,43 @@
-<app-cars></app-cars>
+<div class="container">
+    <div class="row" style="margin-top: 100px">
+        <div class="col-xs-8 col-xs-offset-2">
+            <form  (ngSubmit)="submitForm(form)" #form="ngForm">
+                <div ngModelGroup="user" #user="ngModelGroup">
+                    <div class="form-group" [ngClass]="{'has-error': email.invalid && email.touched}">
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="email"
+                               required
+                               email
+                               #email="ngModel"
+                               ngModel name="email">
+                        <p *ngIf="email.invalid && email.touched">Введите корректный email</p>
+                        <button type="button" class="btn btn-primary" (click)="addRandomEmail()">add random email</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="password"
+                               required
+                               ngModel name="pass">
+                    </div>
+                    <p *ngIf="user.invalid && user.touched">Заполните данные пользователя</p>
+                </div>
+                <div class="form-group">
+                    <label>Select country</label>
+                    <select class="form-control" ngModel name="country"
+                        [ngModel]="defaultCountry">
+                        <option value="ru">Russia</option>
+                        <option value="us">USA</option>
+                        <option value="kz">Kazachstan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit"
+                    [disabled]="!form.valid">Save</button>
+                </div>
+            </form>
+            <div *ngIf="isSubmited">
+                <pre>{{ formData | json}}</pre>
+            </div>
+        </div>
+    </div>
+</div>
