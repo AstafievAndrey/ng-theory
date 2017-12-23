@@ -1,0 +1,34 @@
+{
+  "cars": [
+    {
+      "color": "yellow",
+      "name": "Audi",
+      "id": 1
+    },
+    {
+      "color": "red",
+      "name": "Ford",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Honda",
+      "color": "grey"
+    },
+    {
+      "name": "Lada",
+      "color": "yellow",
+      "id": 5
+    },
+    {
+      "name": "Toyota",
+      "color": "blue",
+      "id": 6
+    },
+    {
+      "name": "Bentli",
+      "color": "yellow",
+      "id": 7
+    }
+  ]
+}

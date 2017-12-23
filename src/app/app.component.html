@@ -1,47 +1,38 @@
 <div class="container">
-    <div class="row" style="margin-top: 100px">
+    <div class="row" style="margin-top: 15px">
         <div class="col-xs-8 col-xs-offset-2">
-            <form [formGroup]="form" (ngSubmit)="submitForm()">
-                <div formGroupName="user">
-                    <div class="form-group" [ngClass]="{'has-error': form.get('user.email').invalid && form.get('user.email').touched}">
-                        <label>Email</label>
-                        <input type="text" class="form-control" placeholder="email"
-                               required
-                               email
-                               [formControlName]="'email'"
-                               name="email">
-                        <p *ngIf="form.get('user.email').invalid && form.get('user.email').touched">
-                            <span *ngIf="form.get('user.email').errors['required']">Введите email</span>
-                            <span *ngIf="form.get('user.email').errors['email']">Введите корректный email</span>
-                            <span *ngIf="form.get('user.email').errors['emailIsUsed']">Email уже занят</span>
-                        </p>
-                    </div>
-                    <div class="form-group" [ngClass]="{'has-error': form.get('user.pass').invalid && form.get('user.pass').touched}">
-                        <label>Password</label>
-                        <input type="password" class="form-control" placeholder="password"
-                               required
-                               [formControlName]="'pass'"
-                               name="pass">
-                        <p *ngIf="form.get('user.pass').invalid && form.get('user.pass').touched">
-                            <span *ngIf="form.get('user.pass').errors['required']">Заполните пароль</span>
-                            <span *ngIf="form.get('user.pass').errors['lengthError']">Меньше {{charCount}} символов</span>
-                        </p>
-                    </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <input type="text" class="form-control" [(ngModel)]="carName">
                 </div>
-                <div class="form-group">
-                    <label>Select country</label>
-                    <select class="form-control" name="country"
-                            [formControlName]="'country'">
-                        <option value="ru">Russia</option>
-                        <option value="us">USA</option>
-                        <option value="kz">Kazachstan</option>
-                    </select>
+                <div class="col-xs-4">
+                    <button class="btn btn-success" (click)="addCar()">
+                        Добавить машину
+                    </button>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-success" type="submit"
-                        [disabled]="form.invalid">Save</button>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" (click)="loadCars()">
+                        Загрузка машин
+                    </button>
                 </div>
-            </form>
+                <div class="col-sm-12">
+                    <ul class="list-group">
+                        <li *ngFor="let item of cars; let i = index" class="list-group-item">
+                            <b>{{i+1}}</b> {{item.name}} <i>{{item.color}}</i>
+                            <button class="btn btn-xs btn-info" (click)="setNewColor(item);">
+                                сменить цвет
+                            </button>
+                            <button class="btn btn-xs btn-danger" (click)="deleteCar(item);">
+                                удалить
+                            </button>
+                            <span class="badge" [ngStyle]="{color: item.color}">{{item.id}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

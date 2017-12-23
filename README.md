@@ -1,3 +1,10 @@
+####Памятка
+1. polyfils.js добавили библиотеку rxjs уточнить для чего этот файл
+2. angular-cli.json указали путь до bootstrap чтобы добавлял при сборке
+3. для локального тестирования исп. json-server запускать `node_modules/json-server/bin/index.js  --watch db.json`
+
+
+
 # N2Theory
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.

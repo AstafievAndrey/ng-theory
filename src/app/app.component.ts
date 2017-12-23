@@ -1,5 +1,11 @@
-import {Component, ViewChild, OnInit} from '@angular/core';
-import {NgForm, FormGroup, FormControl, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {CarsService} from "./services/cars.service";
+
+interface Cars{
+    name:string;
+    color:string;
+    id:number
+}
 
 @Component({
   selector: 'app-root',
@@ -8,51 +14,51 @@ import {NgForm, FormGroup, FormControl, Validators} from "@angular/forms";
 })
 export class AppComponent implements OnInit{
 
-    defaultCountry = 'ru';
-    form:FormGroup;
-    charCount:number = 5;
+    cars:Cars[] = [];
+    carName:string;
+    colors = ['red','blue','white','yellow','green','orange'];
+
+    constructor(private carService:CarsService){}
 
     ngOnInit(){
-        this.form = new FormGroup({
-            user: new FormGroup({
-                email:  new FormControl('',[Validators.required,Validators.email], this.checkForEmail), //3-ий парам для асинхронного валидатора
-                // pass: new FormControl('', [Validators.required,this.checkForLength]),
-                pass: new FormControl('', [Validators.required,this.checkForLength.bind(this)]),
-            }),
-            country: new FormControl('ru')
-        });
+        // this.loadCars();
     }
 
-    checkForEmail(control:FormControl):Promise<any>{
-        return new Promise((resolve,reject) => {
-                setTimeout(()=>{
-                    if(control.value === 'test@mail.ru'){
-                        resolve({
-                            'emailIsUsed':true
-                        });
-                    } else {
-                        resolve(null);
-                    }
-                },3000);
-            }
+    addCar(){
+        this.carService.addCar(this.carName)
+            .subscribe((car:Cars)=>{
+                console.log(car);
+                this.cars.push(car);
+            });
+        this.carName = '';
+    }
+
+    deleteCar(car:Cars){
+        this.carService.deleteCar(car)
+            .subscribe((data)=>{
+                this.cars = this.cars.filter(item => item.id !== car.id);
+            });
+    }
+
+    setNewColor(car:Cars){
+        car.color = this.getRandColor();
+        this.carService.changeColor(car).subscribe(
+            (car:Cars)=>console.log(car)
         );
     }
 
-    //
-    checkForLength(control:FormControl){
-        //this.checkForLength.bind(this) this передаем чтобы иметь доступ к этому контексту
-         if(control.value.length <= this.charCount){
-             return {
-                 'lengthError':true
-             }
-         }
-         return null;
+    getRandColor():string{
+        let num = Math.round(Math.random()*(this.colors.length -1));
+        console.log(this.colors[num]);
+        return this.colors[num];
     }
 
-    public submitForm(){
-        console.log(this.form);
+    loadCars(){
+        this.carService.getCars()
+            .subscribe((cars: Cars[])=>{
+                console.log(cars);
+                this.cars = cars;
+            });
     }
 
-    public addRandomEmail(){
-    }
 }
