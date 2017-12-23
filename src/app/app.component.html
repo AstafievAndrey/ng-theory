@@ -1,30 +1,37 @@
 <div class="container">
     <div class="row" style="margin-top: 100px">
         <div class="col-xs-8 col-xs-offset-2">
-            <form  (ngSubmit)="submitForm(form)" #form="ngForm">
-                <div ngModelGroup="user" #user="ngModelGroup">
-                    <div class="form-group" [ngClass]="{'has-error': email.invalid && email.touched}">
+            <form [formGroup]="form" (ngSubmit)="submitForm()">
+                <div formGroupName="user">
+                    <div class="form-group" [ngClass]="{'has-error': form.get('user.email').invalid && form.get('user.email').touched}">
                         <label>Email</label>
                         <input type="text" class="form-control" placeholder="email"
                                required
                                email
-                               #email="ngModel"
-                               ngModel name="email">
-                        <p *ngIf="email.invalid && email.touched">Введите корректный email</p>
-                        <button type="button" class="btn btn-primary" (click)="addRandomEmail()">add random email</button>
+                               [formControlName]="'email'"
+                               name="email">
+                        <p *ngIf="form.get('user.email').invalid && form.get('user.email').touched">
+                            <span *ngIf="form.get('user.email').errors['required']">Введите email</span>
+                            <span *ngIf="form.get('user.email').errors['email']">Введите корректный email</span>
+                            <span *ngIf="form.get('user.email').errors['emailIsUsed']">Email уже занят</span>
+                        </p>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" [ngClass]="{'has-error': form.get('user.pass').invalid && form.get('user.pass').touched}">
                         <label>Password</label>
                         <input type="password" class="form-control" placeholder="password"
                                required
-                               ngModel name="pass">
+                               [formControlName]="'pass'"
+                               name="pass">
+                        <p *ngIf="form.get('user.pass').invalid && form.get('user.pass').touched">
+                            <span *ngIf="form.get('user.pass').errors['required']">Заполните пароль</span>
+                            <span *ngIf="form.get('user.pass').errors['lengthError']">Меньше {{charCount}} символов</span>
+                        </p>
                     </div>
-                    <p *ngIf="user.invalid && user.touched">Заполните данные пользователя</p>
                 </div>
                 <div class="form-group">
                     <label>Select country</label>
-                    <select class="form-control" ngModel name="country"
-                        [ngModel]="defaultCountry">
+                    <select class="form-control" name="country"
+                            [formControlName]="'country'">
                         <option value="ru">Russia</option>
                         <option value="us">USA</option>
                         <option value="kz">Kazachstan</option>
@@ -32,12 +39,9 @@
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success" type="submit"
-                    [disabled]="!form.valid">Save</button>
+                        [disabled]="form.invalid">Save</button>
                 </div>
             </form>
-            <div *ngIf="isSubmited">
-                <pre>{{ formData | json}}</pre>
-            </div>
         </div>
     </div>
 </div>
