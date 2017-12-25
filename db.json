@@ -1,4 +1,7 @@
 {
+    "title":{
+        "value":"Список машин"
+    },
   "cars": [
     {
       "color": "yellow",

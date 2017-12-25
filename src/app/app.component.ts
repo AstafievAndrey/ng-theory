@@ -17,11 +17,13 @@ export class AppComponent implements OnInit{
     cars:Cars[] = [];
     carName:string;
     colors = ['red','blue','white','yellow','green','orange'];
+    title;
 
     constructor(private carService:CarsService){}
 
     ngOnInit(){
         // this.loadCars();
+        this.title = this.carService.getTitle();
     }
 
     addCar(){
@@ -56,9 +58,13 @@ export class AppComponent implements OnInit{
     loadCars(){
         this.carService.getCars()
             .subscribe((cars: Cars[])=>{
-                console.log(cars);
-                this.cars = cars;
-            });
+                    console.log(cars);
+                    this.cars = cars;
+                },
+                (error)=>{
+                    console.log(error);
+                }
+            );
     }
 
 }
