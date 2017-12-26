@@ -1,0 +1,5 @@
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of cars; let i = index"  style="background: lightgrey">
+        <b>{{i+1}}.</b> {{item.name}} <span [ngStyle]="{color: item.color}"><i>{{item.color}}</i></span>
+    </li>
+</ul>
