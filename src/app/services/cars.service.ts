@@ -17,6 +17,11 @@ export class CarsService{
             });
     }
 
+    getCar(id:number){
+        return this.http.get(`http://localhost:3000/cars/${id}`)
+            .map((response:Response)=>response.json());
+    }
+
     getCars(){
         const header = new Headers({
             'Content-Type':'application/json; charset=utf-8'

@@ -1,5 +1,18 @@
-<ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of cars; let i = index"  style="background: lightgrey">
-        <b>{{i+1}}.</b> {{item.name}} <span [ngStyle]="{color: item.color}"><i>{{item.color}}</i></span>
-    </li>
-</ul>
+<h2>Страница машин</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-6">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of cars; let i = index"  style="background: lightgrey">
+                <b>{{i+1}}.</b> <a [routerLink]="['/cars',item.id]"
+                                   [queryParams]="{year:item.year}"
+                                   fragment="pic"
+            >{{item.name}}</a> <span [ngStyle]="{color: item.color}"><i>{{item.color}}</i></span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-6">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

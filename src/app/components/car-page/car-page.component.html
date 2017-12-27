@@ -1,0 +1,11 @@
+<h4>Информация о машине</h4>
+<p *ngIf="car" style="background: lightgray;padding: 10px;">
+    Название <b>{{car.name}}</b> цвет <span [ngStyle]="{color: car.color}">{{car.color}}</span>
+    <br>
+    Год из гет параметра: {{year}}
+    <br>
+    Hash #{{hash}}
+    <br>
+    <a [routerLink]="['/cars',5]">открыть</a>
+</p>
+
