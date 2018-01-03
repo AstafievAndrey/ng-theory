@@ -10,8 +10,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { AuthService } from './shared/services/auth.service';
 import { HeaderComponent } from './components/header/header.component';
-import { ColorDirective } from './shared/directives/color.directive';
-import {CarsModule} from "./components/cars-page/cars.module";
 import {SharedDirectivesModule} from "./shared/directives/shared-directives.module";
 
 
@@ -27,7 +25,6 @@ import {SharedDirectivesModule} from "./shared/directives/shared-directives.modu
         BrowserModule,
         FormsModule,
         HttpModule,
-        CarsModule,
         SharedDirectivesModule,
         AppRouterModule
   ],

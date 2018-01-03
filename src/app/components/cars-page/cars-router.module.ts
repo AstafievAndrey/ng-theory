@@ -1,13 +1,11 @@
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
-import {AuthGuardService} from "../../shared/services/auth-guard.service";
 import {CarsPageComponent} from "./cars-page.component";
 import {CarPageComponent} from "./car-page/car-page.component";
 
 const carsRoutes:Routes = [
     {
-        path:'cars',
-        canActivate:[AuthGuardService],
+        path:'',
         component: CarsPageComponent,
         children:[
             {path:':id', component: CarPageComponent}
