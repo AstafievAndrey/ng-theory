@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {CarsService} from "../../services/cars.service";
+import {CarsService} from "../../../shared/services/cars.service";
 
 @Component({
   selector: 'app-car-page',
-  templateUrl: './car-page.component.html',
-  styleUrls: ['./car-page.component.css']
+  templateUrl: 'car-page.component.html',
+  styleUrls: ['car-page.component.css']
 })
 export class CarPageComponent implements OnInit {
 

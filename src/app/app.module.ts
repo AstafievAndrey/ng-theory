@@ -1,18 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpModule} from "@angular/http";
+import {FormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
-import {HttpModule} from "@angular/http";
-import {CarsService} from "./services/cars.service";
-import {FormsModule} from "@angular/forms";
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { CarsPageComponent } from './components/cars-page/cars-page.component';
 import {AppRouterModule} from "./app-router.module";
-import { CarPageComponent } from './components/car-page/car-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
-import { NewPageComponent } from './component/new-page/new-page.component';
+import { AuthGuardService } from './shared/services/auth-guard.service';
+import { AuthService } from './shared/services/auth.service';
+import { HeaderComponent } from './components/header/header.component';
+import { ColorDirective } from './shared/directives/color.directive';
+import {CarsModule} from "./components/cars-page/cars.module";
+import {SharedDirectivesModule} from "./shared/directives/shared-directives.module";
 
 
 
@@ -20,18 +20,18 @@ import { NewPageComponent } from './component/new-page/new-page.component';
   declarations: [
     AppComponent,
     HomePageComponent,
-    CarsPageComponent,
-    CarPageComponent,
     NotFoundComponent,
-    NewPageComponent,
+    HeaderComponent,
   ],
   imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
+        CarsModule,
+        SharedDirectivesModule,
         AppRouterModule
   ],
-  providers: [CarsService, AuthGuardService, AuthService],
+  providers: [AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

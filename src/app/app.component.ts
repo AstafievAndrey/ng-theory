@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CarsService} from "./services/cars.service";
+import {CarsService} from "./shared/services/cars.service";
 
 interface Cars{
     name:string;

@@ -11,7 +11,7 @@ export class CarsService{
         return this.http.get('http://localhost:3000/title')
             .map((response:Response)=>{
                 return response.json();
-            }).map((data)=>data.value).delay(2000)
+            }).map((data)=>data.value).delay(200)
             .catch((error:Response)=>{
                 return Observable.throw('Сервер недоступен');
             });
